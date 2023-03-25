@@ -1,8 +1,12 @@
+
 import React from 'react'
+import Main from './Service/Main'
 
 function App() {
   return (
-    <div>App</div>
+    <div>
+      <Main/>
+    </div>
   )
 }
 

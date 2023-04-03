@@ -1,12 +1,14 @@
-import React from 'react'
-import MainNav from '../components/Navigation/MainNav'
+import React from "react";
+import ImageSlider from "../components/Landing/ImageSlider";
+import PopularCatagory from "../components/Landing/PopularCatagory";
 
 function Main() {
   return (
-    <div className='main'>
-<MainNav/>
+    <div >
+      <ImageSlider/>
+      <PopularCatagory/>
     </div>
-  )
+  );
 }
 
-export default Main
+export default Main;

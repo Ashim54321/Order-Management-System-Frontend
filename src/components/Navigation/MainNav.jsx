@@ -12,10 +12,13 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Select } from "@mui/material";
+import {Tooltip } from "@mui/material";
+import {ShoppingCart} from '@mui/icons-material';
+import image from "../../assets/logo.png"
+
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -66,6 +69,9 @@ export default function MainNav() {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const redirectToLogin = ()=>{
+    
+  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -97,8 +103,11 @@ export default function MainNav() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
+      <MenuItem onClick={redirectToLogin}>Login</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Support</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Customer care</MenuItem>
+
     </Menu>
   );
 
@@ -121,8 +130,9 @@ export default function MainNav() {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <ShoppingCart />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -160,6 +170,7 @@ export default function MainNav() {
         position="static"
         style={{ background: "transparent", color: "black", marginTop: "1rem" }}
         elevation={0}
+        className="nav"
       >
         <Toolbar>
           <IconButton
@@ -171,24 +182,15 @@ export default function MainNav() {
             style={{
               background: "rgba(222, 215, 215, 0.811)",
               borderRadius: "2rem",
+              fontSize:"15px",
+              height:"2.4rem"
             }}
           >
             <MenuIcon />
+            <h5 className="text-black-500 m-1">Menu</h5>
           </IconButton>
 
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              style={{
-                background: "rgba(222, 215, 215, 0.811)",
-                borderRadius: "1rem",
-              }}
-            />
-          </Search>
+          
           <Typography
             variant="h6"
             noWrap
@@ -202,33 +204,57 @@ export default function MainNav() {
             sx={{
               display: { xs: "none", sm: "block" },
               Text: "center",
-              color: "grey",
+              color: "rgba(66, 64, 64, 0.811)",
               width: "100%",
               textAlign: "center",
             }}
           >
-            sasa
+            <section className="flex w-full items-center justify-center">
+            <img src={image} height={"35px"} width={"90px"}/>
+             
+            </section>
           </Typography>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+              style={{
+                background: "rgba(222, 215, 215, 0.811)",
+                borderRadius: "2rem",
+                height:"2.5rem"
+              }}
+            />
+          </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Tooltip title=" My Cart">
             <IconButton
-              size="large"
+              size="medium"
               aria-label="show 4 new mails"
               color="inherit"
+              style={{margin:"0 0.3rem", color:"rgba(66, 64, 64, 0.811)"}}
             >
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+                <ShoppingCart />
               </Badge>
             </IconButton>
+            </Tooltip>
+            <Tooltip title="Notifications">
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 1 new notifications"
               color="inherit"
+              style={{margin:"0 0.3rem", color:"rgba(66, 64, 64, 0.811)"}}
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={1} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            </Tooltip>
+            <Tooltip title="My Profile">
             <IconButton
               size="large"
               edge="end"
@@ -237,9 +263,11 @@ export default function MainNav() {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              style={{margin:"0 0.3rem", color:"rgba(66, 64, 64, 0.811)"}}
             >
               <AccountCircle />
             </IconButton>
+            </Tooltip>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -253,20 +281,8 @@ export default function MainNav() {
               <MoreIcon />
             </IconButton>
           </Box>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <Badge>
-              <Select
-               label="Age"
-              >
-                <MenuItem >ENGLISH</MenuItem>
-                <MenuItem >Twenty</MenuItem>
-              </Select>
-            </Badge>
-          </IconButton>
+
+         
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

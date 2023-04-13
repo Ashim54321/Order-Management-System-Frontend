@@ -14,9 +14,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import {Tooltip } from "@mui/material";
+import {Button, Tooltip } from "@mui/material";
 import {ShoppingCart} from '@mui/icons-material';
 import image from "../../assets/logo.png"
+import Modal from '@mui/material/Modal';
+import AuthDetail from "../Authenticate/Login";
+import Register from "../Authenticate/Register";
+
 
 
 
@@ -62,9 +66,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function MainNav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [open, setOpen] = React.useState(false);
+  const [register, setRegister] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleClick =() =>{
+     setOpen(true);
+  }
+
+  const handleLogin=()=>{
+    setRegister(false);
+    setOpen(true)
+  }
+  const handleRegister=()=>{
+    setOpen(false)
+    setRegister(true);
+  }
+  const handleClose = ()=>{
+    setOpen(false);
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -103,11 +124,8 @@ export default function MainNav() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
-      <MenuItem onClick={redirectToLogin}>Login</MenuItem>
       <MenuItem onClick={handleMenuClose}>Support</MenuItem>
       <MenuItem onClick={handleMenuClose}>Customer care</MenuItem>
-
     </Menu>
   );
 
@@ -155,12 +173,14 @@ export default function MainNav() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          
         >
-          <AccountCircle />
+          <AccountCircle color="black" />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      <Button onClick={handleClick}  sx={{margin:"5px",border:"1px solid black",paddingLeft:"10px",paddingRight:"10px",color:"black"}}>Login</Button>
+              <Button onClick={()=> setRegister(true)} sx={{margin:"5px",border:"1px solid black",paddingLeft:"10px",paddingRight:"10px",color:"black"}}>SignUp</Button>
     </Menu>
   );
 
@@ -268,6 +288,8 @@ export default function MainNav() {
               <AccountCircle />
             </IconButton>
             </Tooltip>
+              <Button onClick={handleClick} sx={{margin:"5px",border:"1px solid black",paddingLeft:"10px",paddingRight:"10px",color:"black"}}>Login</Button>
+              <Button onClick={()=> setRegister(true)} sx={{margin:"5px",border:"1px solid black",paddingLeft:"10px",paddingRight:"10px",color:"black"}}>SignUp</Button>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -284,6 +306,33 @@ export default function MainNav() {
 
          
         </Toolbar>
+        <Modal
+        open={open}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        BackdropProps={{
+          style: {
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            backdropFilter: 'blur(4px)', // replace with your desired background color
+          },
+        }}
+      >
+       <AuthDetail clickHandler={handleClose} register={handleRegister}/>
+      </Modal>
+      <Modal
+        open={register}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+
+        BackdropProps={{
+          style: {
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            backdropFilter: 'blur(4px)', // replace with your desired background color
+          },
+        }}
+      >
+       <Register clickHandler={()=> setRegister(false)} log={handleLogin}/>
+      </Modal>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}

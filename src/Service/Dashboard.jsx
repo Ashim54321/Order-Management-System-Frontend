@@ -1,10 +1,10 @@
 import React from 'react'
+import Login from '../admin/Login';
 
 function Dashboard() {
   return (
         <>
-
-        hekko 
+        <Login/>
         </>
   )
 }

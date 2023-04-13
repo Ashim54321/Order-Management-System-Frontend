@@ -11,7 +11,7 @@ export default function Cards(props) {
   const navigate = useNavigate();
  
   const handleClick = () => {
-    alert("added to cart");
+    confirm("added to cart");
   };
   return (
     <Card>
@@ -69,7 +69,7 @@ export default function Cards(props) {
           </CardContent>
           <Tooltip title="Add to cart">
             <button
-              className="p-4 rounded-full hover:bg-gray-100"
+              className="p-8 rounded-full hover:bg-gray-100"
               onClick={handleClick}
             >
               <AiOutlineShoppingCart className="w-6 h-6" />

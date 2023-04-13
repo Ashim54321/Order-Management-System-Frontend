@@ -8,7 +8,9 @@ export default {
     fontFamily:{
       'sans': ['Montserrat', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      primary:'black'
+    },
   },
   plugins: [],
 }

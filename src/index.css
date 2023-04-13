@@ -7,6 +7,7 @@
 body{
     background-color: rgb(239, 240, 241);
     font-family: 'Montserrat', sans-serif;
+    width: 100% !important;
 }
 .mui-ripple-circle {display: none}
 
@@ -36,7 +37,7 @@ body{
 .slider {
     position: relative;
     width: auto;
-    height: 450px;
+    height: 500px;
     margin-top: 1rem;
     overflow: hidden;
   }
@@ -130,4 +131,22 @@ body{
 }
 
     
+}
+
+.nabin{
+  /* background-color: #000 !important; */
+  font:20px;
+  border-bottom: none !important;
+}
+.MuiInputBase-input::placeholder{
+  color: green;
+} 
+/* MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input" */
+.css-1x51dt5-MuiInputBase-input-MuiInput-input::placeholder{
+  text-decoration: none;
+  color: rgb(0, 0, 0) !important;
+  opacity: 1 !important;
+}
+.css-1x51dt5-MuiInputBase-input-MuiInput-input{
+  border-bottom: 1px solid rgb(43, 41, 41) !important;
 }
